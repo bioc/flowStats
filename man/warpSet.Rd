@@ -104,6 +104,7 @@ basis. Multiple channels are normalized in a loop.
 We currently use a patched fda version.
 }
 \examples{
+\dontrun{
 library(flowCore)
 data(ITN)
 dat <- transform(ITN, "CD4"=asinh(CD4), "CD3"=asinh(CD3), "CD8"=asinh(CD8))
@@ -115,6 +116,7 @@ if(require(flowViz)){
   d2 <- densityplot(~CD8, datr, main="normalized", filter=curv1Filter("CD8"))
   plot(d1, split=c(1,1,2,1))
   plot(d2, split=c(2,1,2,1), newpage=FALSE)
+}
 }
 }
 \references{
