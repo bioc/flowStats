@@ -72,7 +72,9 @@
 #' \code{\link[flowStats:curv1Filter-class]{curv1Filter}}
 #' \code{\link{landmarkMatrix}}
 #' 
+#' @export
 #' @examples
+#' \dontrun{
 #' library(flowCore)
 #' data(ITN)
 #' dat <- transform(ITN, "CD4"=asinh(CD4), "CD3"=asinh(CD3), "CD8"=asinh(CD8))
@@ -85,13 +87,15 @@
 #'   plot(d1, split=c(1,1,2,1))
 #'   plot(d2, split=c(2,1,2,1), newpage=FALSE)
 #' }
-#' @export
+#' }
 warpSet <- function(x, ...)UseMethod("warpSet")
+#' @export
 warpSet.default <- function(x, ...){
   stop(class(x), " is not supported by warpSet!")
   }
 ## Align data in a flowSet by estimating high density regions and using this
 ## information as landmarks. This works separately on each parameter.
+#' @export
 warpSet.GatingSet <- function(x,node=NULL, ...){
 	#Perform normalization on the subset
 	#return the normalized data
@@ -104,6 +108,7 @@ warpSet.GatingSet <- function(x,node=NULL, ...){
 	  warpSet(x = data,...)
 }
 #' @rdname warpSet
+#' @export
 warpSet.cytoset <- function(x, stains, grouping=NULL,  subsample=NULL,
                                 peakNr=NULL, clipRange=0.01, nbreaks=11, fres, bwFac=2,
                                 warpFuns=FALSE,target=NULL,chunksize=10,
@@ -351,6 +356,7 @@ warpSet.cytoset <- function(x, stains, grouping=NULL,  subsample=NULL,
 
 # When isNew == FALSE, the original cdf is modified 
 # when isNew == TRUE, a new cdf is created
+#' @export
 warpSet.ncdfFlowSet <- function(x, stains, grouping=NULL, subsample=NULL,
 		peakNr=NULL, clipRange=0.01, nbreaks=11, fres, bwFac=2,
 		warpFuns=FALSE,target=NULL,chunksize=10,isNew=FALSE,newNcFile=NULL,
@@ -607,6 +613,7 @@ warpSet.ncdfFlowSet <- function(x, stains, grouping=NULL, subsample=NULL,
 	expData
 }
 #
+#' @export
 warpSet.flowSet <- function(x, stains, grouping=NULL,  subsample=NULL,
 		peakNr=NULL, clipRange=0.01, nbreaks=11, fres, bwFac=2,
 		warpFuns=FALSE,target=NULL,
